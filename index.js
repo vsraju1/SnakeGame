@@ -1,6 +1,6 @@
 // Game constants and variables
 let inputDir = { x: 0, y: 0 };
-const foodSound = new Audio("./audio/food.mp3");
+const foodSound = new Audio("./music/food.mp3");
 const gameOverSound = new Audio("./music/gameover");
 const moveSound = new Audio("./music/move.mp3");
 const musicSOund = new Audio("./music/music.mp3");
@@ -22,8 +22,15 @@ const main = (ctime) => {
   gameEngine();
 };
 
-function isCollide(snakeArre){
-    return false;
+function isCollide(snake){
+    // If you bump into yourself
+    for (let i = 1; i < snakeArre.length; i++) {
+      if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
+        return true;
+        
+      }
+      
+    }
 }
 
 
@@ -46,7 +53,8 @@ function gameEngine() {
 
   // ii. If snake has eaten the food, then score should increase and regenerate the food
   if (snakeArre[0].y === food.y && snakeArre[0].x === food.x){
-    snakeArre.unshift({x: snakeArre[0].x + inputDir.x, y: snakeArre[0].y + inputDir.y})
+    foodSound.play()
+    snakeArre.unshift({x: snakeArre[0].x + inputDir.x, y: snakeArre[0].y + inputDir.y})  
     let a = 2;
     let b = 16;
     food = { x:  Math.round(a +(b-a)*Math.random()), y: Math.round(a+(b-a)*Math.random())}
