@@ -1,14 +1,14 @@
 // Game constants and variables
 let inputDir = { x: 0, y: 0 };
 const foodSound = new Audio("./music/food.mp3");
-const gameOverSound = new Audio("./music/gameover");
+const gameOverSound = new Audio("./music/gameover.mp3");
 const moveSound = new Audio("./music/move.mp3");
 const musicSOund = new Audio("./music/music.mp3");
 let speed = 4;
 let lastPaintTime = 0;
 let score = 0;
 
-let snakeArre = [{ x: 9, y: 9 }];
+let snakeArre = [{ x: 9, y: 9}];
 food = { x: 13, y: 15 };
 
 // Game functions
@@ -26,9 +26,12 @@ function isCollide(snake){
     // If you bump into yourself
     for (let i = 1; i < snakeArre.length; i++) {
       if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) {
-        return true;
-        
+        return true;  
       }
+    }
+    console.log(snake[0])
+    if (snake[0].x >=18 || snake[0].x <=0 || snake[0].y >=18 || snake[0].y <=0 ) {
+      return true
       
     }
 }
@@ -103,6 +106,7 @@ window.requestAnimationFrame(main);
 window.addEventListener("keydown", (e) => {
   inputDir = { x: 0, y: 1 }; // Start the game
   moveSound.play();
+  musicSOund.play();
   switch (e.key) {
     case "ArrowUp":
       console.log("ArrowUp button clicked");
