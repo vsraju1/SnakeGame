@@ -33,3 +33,11 @@
 .head{
     background-color: red;
 }
+.score {
+    padding: 5px 20px;
+    width: fit-content;
+    height: fit-content;
+    background-color: white;
+    border-radius: 5px;
+    margin-right: 10px;
+}

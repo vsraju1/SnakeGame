@@ -7,6 +7,7 @@ const musicSOund = new Audio("./music/music.mp3");
 let speed = 4;
 let lastPaintTime = 0;
 let score = 0;
+let scoreDisplay = document.querySelector(".score")
 
 let snakeArre = [{ x: 9, y: 9}];
 food = { x: 13, y: 15 };
@@ -52,10 +53,14 @@ function gameEngine() {
     snakeArre = [{x:9,y:9}];
     musicSOund.play();
     score = 0;
+    scoreDisplay.innerHTML = "Score: " + score
   }
 
   // ii. If snake has eaten the food, then score should increase and regenerate the food
   if (snakeArre[0].y === food.y && snakeArre[0].x === food.x){
+    score = score+1
+    scoreDisplay.innerHTML = "Score: " +score;
+    console.log(score)
     foodSound.play()
     snakeArre.unshift({x: snakeArre[0].x + inputDir.x, y: snakeArre[0].y + inputDir.y})  
     let a = 2;
