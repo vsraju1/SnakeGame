@@ -56,4 +56,12 @@
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
 }
+#hiscorebox {
+    position: absolute;
+    right: 150px;
+    top: 80px;
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
 

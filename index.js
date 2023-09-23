@@ -9,6 +9,7 @@ let lastPaintTime = 0;
 let score = 0;
 // let scoreElement;
 let scoreDisplay = document.querySelector(".score");
+let hiscorebox = document.querySelector("#hiscorebox")
 
 let snakeArre = [{ x: 9, y: 9 }];
 let food = { x: 13, y: 15 };
@@ -83,6 +84,11 @@ function gameEngine() {
   // ii. If snake has eaten the food, then score should increase and regenerate the food
   if (snakeArre[0].y === food.y && snakeArre[0].x === food.x) {
     score = score + 1;
+    if(score > hiscoreval){
+      hiscoreval = score;
+      localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+      hiscorebox.innerHTML = "HiScore: "+ hiscore;
+    }
     scoreDisplay.innerHTML = "Score: " + score;
     foodSound.play();
     snakeArre.unshift({
@@ -139,6 +145,14 @@ function gameEngine() {
 }
 
 //main logic starts here
+let hiscore = localStorage.getItem("hiscore");
+if (hiscore === null) {
+  hiscoreval = 0;
+  localStorage.setItem("hiScore", JSON.stringify(hiscoreval))
+}else{
+  hiscoreval = JSON.parse(hiscore);
+  hiscorebox.innerHTML = "HiScore: "+ hiscore;
+}
 window.requestAnimationFrame(main);
 
 window.addEventListener("keydown", (e) => {
