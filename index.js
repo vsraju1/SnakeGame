@@ -8,10 +8,9 @@ let speed = 4;
 let lastPaintTime = 0;
 let score = 0;
 let scoreDisplay = document.querySelector(".score");
-let hiscorebox = document.querySelector("#hiscorebox");
+// let hiscorebox = document.querySelector("#hiscorebox");
 let snakeArre = [{ x: 9, y: 9 }];
 let food = { x: 13, y: 15 };
-let score1 = { x: 1, y: 1 };
 
 // Game functions
 const main = (ctime) => {
@@ -48,6 +47,7 @@ const main = (ctime) => {
     }
   }
   else {
+    speed =4;
     if ((ctime - lastPaintTime) / 1000 < 1 / speed) {
       return;
     }
@@ -90,11 +90,12 @@ function gameEngine() {
   // ii. If snake has eaten the food, then score should increase and regenerate the food
   if (snakeArre[0].y === food.y && snakeArre[0].x === food.x) {
     foodSound.play();
-    score = score + 1;
+    score += 1;
     if(score>hiscoreval){
-      let hiscoreval = score;
+      hiscoreval = score;
       localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
-      hiscorebox.innerHTML = "Hiscore: "+hiscoreval;
+      hiscoreBox.innerHTML = "Hiscore: " + hiscoreval;
+
     }
     scoreDisplay.innerHTML = "Score: " + score;
     snakeArre.unshift({
@@ -141,12 +142,13 @@ function gameEngine() {
 
 //main logic starts here
 let hiscore = localStorage.getItem("hiscore");
-if (hiscore === null) {
+if (hiscore === null){
   hiscoreval = 0;
-  localStorage.setItem("hiScore", JSON.stringify(hiscoreval))
-}else{
+  localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
+}
+else{
   hiscoreval = JSON.parse(hiscore);
-  hiscorebox.innerHTML = "HiScore: "+ hiscore;
+  hiscoreBox.innerHTML = "Hiscore: " + hiscore;
 }
 
 
